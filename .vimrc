@@ -10,13 +10,13 @@ map <silent><C-y> :1,$!xmllint --encode UTF-8 --format -<cr>
 map <C-p> :%!python -m json.tool<CR>
 " =============== 展示颜色 ================
 syntax enable
-set background=dark
-colorscheme solarized
-if has('gui_running')
-    set background=light
-else
-    set background=dark
-endif
+" set background=dark
+" colorscheme solarized
+" if has('gui_running')
+"     set background=light
+" else
+"     set background=dark
+" endif
 
 colorscheme Tomorrow-Night
 set t_Co=256              " enable 256-color mode.
