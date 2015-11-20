@@ -194,8 +194,6 @@ noremap <silent><leader>/ :nohls<CR>
 
 nnoremap ; :
 
-"nnoremap <leader>v V`}
-
 "Use sane regexes"
 nnoremap / /\v
 vnoremap / /\v
@@ -206,11 +204,6 @@ nnoremap <silent> N Nzz
 nnoremap <silent> * *zz
 nnoremap <silent> # #zz
 nnoremap <silent> g* g*zz
-
-"Use arrow key to change buffer"
-noremap <Tab> :bp<CR>
-"noremap <left> :bp<CR>
-noremap <right> :bn<CR>
 
 ""Jump to start and end of line using the home row keys
 nmap t o<ESC>k
@@ -235,3 +228,20 @@ map <leader>ba :1,1000 bd!<cr>
 " Opens a new tab with the current buffer's path
 " Super useful when editing files in the same directory
 map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
+
+"Use arrow key to change buffer"
+noremap <Tab> :tabnext<CR>
+noremap <left> :bp<CR>
+noremap <right> :bn<CR>
+
+" normal模式下切换到确切的tab
+noremap <leader>1 1gt
+noremap <leader>2 2gt
+noremap <leader>3 3gt
+noremap <leader>4 4gt
+noremap <leader>5 5gt
+noremap <leader>6 6gt
+noremap <leader>7 7gt
+noremap <leader>8 8gt
+noremap <leader>9 9gt
+noremap <leader>0 :tablast<cr>
