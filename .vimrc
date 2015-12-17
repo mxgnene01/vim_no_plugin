@@ -1,8 +1,4 @@
 "==========================================
-"  无插件版 
-"==========================================
-
-"==========================================
 " General 基础设置
 "==========================================
 "格式化xml和json
@@ -10,27 +6,29 @@ map <silent><C-y> :1,$!xmllint --encode UTF-8 --format -<cr>
 map <C-p> :%!python -m json.tool<CR>
 " =============== 展示颜色 ================
 syntax enable
-" set background=dark
-" colorscheme solarized
-" if has('gui_running')
-"     set background=light
-" else
-"     set background=dark
-" endif
+set background=dark
+if has('gui_running')
+    set background=light
+else
+    set background=dark
+endif
 
-colorscheme Tomorrow-Night
 set t_Co=256              " enable 256-color mode.
+colorscheme Tomorrow-Night
+hi Normal ctermfg=252 ctermbg=none "Transparent background
+
 " =============== 展示颜色 ================
+" tab相关变更
+set tabstop=4             " 设置Tab键的宽度        [等同的空格个数]
+set shiftwidth=4          " 每一次缩进对应的空格数
+set softtabstop=4         " 按退格键时可以一次删掉 4 个空格
+set smarttab              " insert tabs on the start of a line according to shiftwidth, not tabstop 按退格键时可以一次删掉 4 个空格
+set expandtab             " 将Tab自动转化成空格    [需要输入真正的Tab键时，使用 Ctrl+V + Tab]
+set shiftround            " 缩进时，取整 use multiple of shiftwidth when indenting with '<' and '>'
 set nocompatible          " get rid of Vi compatibility mode. SET FIRST!
-set softtabstop=2         " unify
-set shiftwidth=2          " indent/outdent by 4 columns
 set shiftround            " always indent/outdent to the nearest tabstop
-set smarttab              " use tabs at the start of a line, spaces elsewhere
 set modeline              " enable modeline
 set nu
-
-" Transparent background
-hi Normal          ctermfg=252 ctermbg=none
 
 " history存储长度。
 set history=2000
@@ -48,12 +46,7 @@ set nocompatible
 set autoread          " 文件修改之后自动载入。
 
 " 突出显示当前行等 不喜欢这种定位可注解
-" set cursorcolumn
 set cursorline              " 突出显示当前行
-
-"设置 退出vim后，内容显示在终端屏幕, 可以用于查看和复制
-"好处：误删什么的，如果以前屏幕打开，可以找回
-set t_ti= t_te=
 
 " No annoying sound on errors
 " 去掉输入错误的提示声音
@@ -96,8 +89,6 @@ set encoding=utf-8
 set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
 set helplang=cn
 " language message zh_CN.UTF-8
-" set langmenu=zh_CN.UTF-8
-"set enc=2byte-gb18030
 " 下面这句只影响普通模式 (非图形界面) 下的 Vim。
 set termencoding=utf-8
 
@@ -194,6 +185,8 @@ noremap <silent><leader>/ :nohls<CR>
 
 nnoremap ; :
 
+"nnoremap <leader>v V`}
+
 "Use sane regexes"
 nnoremap / /\v
 vnoremap / /\v
@@ -204,6 +197,27 @@ nnoremap <silent> N Nzz
 nnoremap <silent> * *zz
 nnoremap <silent> # #zz
 nnoremap <silent> g* g*zz
+
+" Opens a new tab with the current buffer's path
+" Super useful when editing files in the same directory
+map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
+
+"Use arrow key to change buffer"
+noremap <Tab> :tabnext<CR>
+noremap <left> :bp<CR>
+noremap <right> :bn<CR>
+
+" normal模式下切换到确切的tab
+noremap <leader>1 1gt
+noremap <leader>2 2gt
+noremap <leader>3 3gt
+noremap <leader>4 4gt
+noremap <leader>5 5gt
+noremap <leader>6 6gt
+noremap <leader>7 7gt
+noremap <leader>8 8gt
+noremap <leader>9 9gt
+noremap <leader>0 :tablast<cr>
 
 ""Jump to start and end of line using the home row keys
 nmap t o<ESC>k
@@ -228,20 +242,3 @@ map <leader>ba :1,1000 bd!<cr>
 " Opens a new tab with the current buffer's path
 " Super useful when editing files in the same directory
 map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
-
-"Use arrow key to change buffer"
-noremap <Tab> :tabnext<CR>
-noremap <left> :bp<CR>
-noremap <right> :bn<CR>
-
-" normal模式下切换到确切的tab
-noremap <leader>1 1gt
-noremap <leader>2 2gt
-noremap <leader>3 3gt
-noremap <leader>4 4gt
-noremap <leader>5 5gt
-noremap <leader>6 6gt
-noremap <leader>7 7gt
-noremap <leader>8 8gt
-noremap <leader>9 9gt
-noremap <leader>0 :tablast<cr>
